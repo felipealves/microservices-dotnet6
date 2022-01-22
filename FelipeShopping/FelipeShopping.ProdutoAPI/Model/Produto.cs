@@ -19,14 +19,14 @@ namespace FelipeShopping.ProdutoAPI.Model
 
         [Column("descricao")]
         [StringLength(500)]
-        public string Descricao { get; set; }
+        public string? Descricao { get; set; }
 
         [Column("categoria_nome")]
         [StringLength(50)]
-        public string CategoriaNome { get; set; }
+        public string? CategoriaNome { get; set; }
 
         [Column("imagem_url")]
         [StringLength(300)]
-        public string ImagemUrl { get; set; }
+        public string? ImagemUrl { get; set; }
     }
 }

@@ -1,13 +1,21 @@
+using AutoMapper;
+using FelipeShopping.ProdutoAPI.Config;
 using FelipeShopping.ProdutoAPI.Model.Context;
+using FelipeShopping.ProdutoAPI.Repository;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-
 
 var connection = builder.Configuration["MySQLConnection:MySQLConnectionString"];
 
 builder.Services.AddDbContext<MySQLContext>(options => 
     options.UseMySql(connection, new MySqlServerVersion(new Version(8,0,28))));
+
+IMapper mapper = MappingConfig.RegisterMaps().CreateMapper();
+builder.Services.AddSingleton(mapper);
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+builder.Services.AddScoped<IProdutoRepository, ProdutoRepository>();
 
 // Add services to the container.
 

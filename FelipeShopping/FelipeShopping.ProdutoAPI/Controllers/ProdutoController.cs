@@ -34,7 +34,7 @@ namespace FelipeShopping.ProdutoAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<ProdutoVO>> Create(ProdutoVO produtoVO)
+        public async Task<ActionResult<ProdutoVO>> Create([FromBody] ProdutoVO produtoVO)
         {
             if (produtoVO == null)
                 return BadRequest();
@@ -44,7 +44,7 @@ namespace FelipeShopping.ProdutoAPI.Controllers
         }
 
         [HttpPut]
-        public async Task<ActionResult<ProdutoVO>> Update(ProdutoVO produtoVO)
+        public async Task<ActionResult<ProdutoVO>> Update([FromBody] ProdutoVO produtoVO)
         {
             if (produtoVO == null)
                 return BadRequest();

@@ -4,8 +4,8 @@ namespace FelipeShopping.IdentityServer.Model.Context
 {
     public class ApplicationUser : IdentityUser
     {
-        private string? PrimeiroNome { get; set; }
-        private string? UltimoNome { get; set; }
+        public string? PrimeiroNome { get; set; }
+        public string? UltimoNome { get; set; }
 
     }
 }

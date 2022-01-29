@@ -40,8 +40,8 @@ namespace FelipeShopping.IdentityServer.Configuration
                     ClientId = "felipe_shoppping",
                     ClientSecrets = { new Secret("my_scret_complexity_123_TYPE".Sha256()) }, //Pode e deve ficar no appsettings
                     AllowedGrantTypes = GrantTypes.Code,
-                    RedirectUris = {"http://localhost:28870/signin-oidc"},
-                    PostLogoutRedirectUris = {"http://localhost:28870/signout-callback-oidc" },
+                    RedirectUris = {"https://localhost:4430/signin-oidc"},
+                    PostLogoutRedirectUris = {"https://localhost:4430/signout-callback-oidc" },
                     AllowedScopes = new List<string>
                     {
                         IdentityServerConstants.StandardScopes.OpenId,

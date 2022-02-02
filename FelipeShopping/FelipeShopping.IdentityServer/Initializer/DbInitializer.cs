@@ -26,7 +26,7 @@ namespace FelipeShopping.IdentityServer.Initializer
 
             _role.CreateAsync(new IdentityRole(IdentityConfiguration.Admin)).GetAwaiter().GetResult();
 
-            _role.CreateAsync(new IdentityRole(IdentityConfiguration.Cliente)).GetAwaiter().GetResult();
+            _role.CreateAsync(new IdentityRole(IdentityConfiguration.Client)).GetAwaiter().GetResult();
 
             //Config Admin
             ApplicationUser admin = new ApplicationUser
@@ -62,14 +62,14 @@ namespace FelipeShopping.IdentityServer.Initializer
             };
 
             _user.CreateAsync(cliente, "Felipe$123").GetAwaiter().GetResult();
-            _user.AddToRoleAsync(cliente, IdentityConfiguration.Cliente).GetAwaiter().GetResult();
+            _user.AddToRoleAsync(cliente, IdentityConfiguration.Client).GetAwaiter().GetResult();
 
             var clienteClaims = _user.AddClaimsAsync(cliente, new Claim[]
                 {
-                    new Claim(JwtClaimTypes.Name, $"{admin.PrimeiroNome} {admin.UltimoNome}"),
-                    new Claim(JwtClaimTypes.GivenName, admin.PrimeiroNome),
-                    new Claim(JwtClaimTypes.FamilyName, admin.UltimoNome),
-                    new Claim(JwtClaimTypes.Role, IdentityConfiguration.Cliente)
+                    new Claim(JwtClaimTypes.Name, $"{cliente.PrimeiroNome} {cliente.UltimoNome}"),
+                    new Claim(JwtClaimTypes.GivenName, cliente.PrimeiroNome),
+                    new Claim(JwtClaimTypes.FamilyName, cliente.UltimoNome),
+                    new Claim(JwtClaimTypes.Role, IdentityConfiguration.Client)
                 }).Result;
         }
     }

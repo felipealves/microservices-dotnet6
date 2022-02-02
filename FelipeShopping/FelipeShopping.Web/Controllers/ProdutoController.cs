@@ -1,5 +1,7 @@
 ﻿using FelipeShopping.Web.Models;
 using FelipeShopping.Web.Services.IServices;
+using FelipeShopping.Web.Utils;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FelipeShopping.Web.Controllers
@@ -13,17 +15,20 @@ namespace FelipeShopping.Web.Controllers
             _produtoService = produtoService ?? throw new ArgumentNullException(nameof(produtoService));
         }
 
+        [Authorize]
         public async Task<IActionResult> ProdutoIndex()
         {
             var produtos = await _produtoService.FindAllProdutos();
             return View(produtos);
         }
 
+        [Authorize]
         public async Task<IActionResult> ProdutoCriar()
         {
             return View();
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> ProdutoCriar(ProdutoModel model)
         {
@@ -37,6 +42,7 @@ namespace FelipeShopping.Web.Controllers
             return View(model);
         }
 
+        [Authorize]
         public async Task<IActionResult> ProdutoEditar(int id)
         {
             var model = await _produtoService.FindProdutoById(id);
@@ -46,6 +52,7 @@ namespace FelipeShopping.Web.Controllers
             return NotFound();
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> ProdutoEditar(ProdutoModel model)
         {
@@ -59,6 +66,7 @@ namespace FelipeShopping.Web.Controllers
             return View(model);
         }
 
+        [Authorize]
         public async Task<IActionResult> ProdutoDeletar(int id)
         {
             var model = await _produtoService.FindProdutoById(id);
@@ -68,7 +76,9 @@ namespace FelipeShopping.Web.Controllers
             return NotFound();
         }
 
+        
         [HttpPost]
+        [Authorize(Roles = Role.Admin)]
         public async Task<IActionResult> ProdutoDeletar(ProdutoModel model)
         {
             var retorno = await _produtoService.DeleteProdutoById(model.Id);

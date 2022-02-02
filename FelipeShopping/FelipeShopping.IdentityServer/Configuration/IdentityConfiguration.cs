@@ -37,7 +37,7 @@ namespace FelipeShopping.IdentityServer.Configuration
                 },
                 new Client
                 {
-                    ClientId = "felipe_shoppping",
+                    ClientId = "felipe_shopping",
                     ClientSecrets = { new Secret("my_scret_complexity_123_TYPE".Sha256()) }, //Pode e deve ficar no appsettings
                     AllowedGrantTypes = GrantTypes.Code,
                     RedirectUris = {"https://localhost:4430/signin-oidc"},
@@ -47,7 +47,7 @@ namespace FelipeShopping.IdentityServer.Configuration
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
                         IdentityServerConstants.StandardScopes.Email,
-                        "felipe_shoppping"
+                        "felipe_shopping"
                     }
                 }
             };

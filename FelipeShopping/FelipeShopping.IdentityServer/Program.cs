@@ -1,6 +1,8 @@
+using Duende.IdentityServer.Services;
 using FelipeShopping.IdentityServer.Configuration;
 using FelipeShopping.IdentityServer.Initializer;
 using FelipeShopping.IdentityServer.Model.Context;
+using FelipeShopping.IdentityServer.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -28,6 +30,7 @@ var builderIdentity = builder.Services.AddIdentityServer(options =>
                             .AddAspNetIdentity<ApplicationUser>();
 
 builder.Services.AddScoped<IDbInitializer, DbInitializer>();
+builder.Services.AddScoped<IProfileService, ProfileServices>();
 
 builderIdentity.AddDeveloperSigningCredential();
 

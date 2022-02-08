@@ -1,6 +1,7 @@
 ﻿using FelipeShopping.Web.Models;
 using FelipeShopping.Web.Services.IServices;
 using FelipeShopping.Web.Utils;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,7 +19,8 @@ namespace FelipeShopping.Web.Controllers
         [Authorize]
         public async Task<IActionResult> ProdutoIndex()
         {
-            var produtos = await _produtoService.FindAllProdutos();
+            var token = await HttpContext.GetTokenAsync("access_token");
+            var produtos = await _produtoService.FindAllProdutos(token);
             return View(produtos);
         }
 
@@ -34,7 +36,8 @@ namespace FelipeShopping.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var retorno = await _produtoService.CreateProduto(model);
+                var token = await HttpContext.GetTokenAsync("access_token");
+                var retorno = await _produtoService.CreateProduto(token, model);
                 if (retorno != null)
                     return RedirectToAction(nameof(ProdutoIndex));
             }
@@ -45,7 +48,8 @@ namespace FelipeShopping.Web.Controllers
         [Authorize]
         public async Task<IActionResult> ProdutoEditar(int id)
         {
-            var model = await _produtoService.FindProdutoById(id);
+            var token = await HttpContext.GetTokenAsync("access_token");
+            var model = await _produtoService.FindProdutoById(token, id);
             if (model != null)
                 return View(model);
 
@@ -58,7 +62,8 @@ namespace FelipeShopping.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var retorno = await _produtoService.UpdateProduto(model);
+                var token = await HttpContext.GetTokenAsync("access_token");
+                var retorno = await _produtoService.UpdateProduto(token, model);
                 if (retorno != null)
                     return RedirectToAction(nameof(ProdutoIndex));
             }
@@ -69,7 +74,8 @@ namespace FelipeShopping.Web.Controllers
         [Authorize]
         public async Task<IActionResult> ProdutoDeletar(int id)
         {
-            var model = await _produtoService.FindProdutoById(id);
+            var token = await HttpContext.GetTokenAsync("access_token");
+            var model = await _produtoService.FindProdutoById(token, id);
             if (model != null)
                 return View(model);
 
@@ -81,7 +87,8 @@ namespace FelipeShopping.Web.Controllers
         [Authorize(Roles = Role.Admin)]
         public async Task<IActionResult> ProdutoDeletar(ProdutoModel model)
         {
-            var retorno = await _produtoService.DeleteProdutoById(model.Id);
+            var token = await HttpContext.GetTokenAsync("access_token");
+            var retorno = await _produtoService.DeleteProdutoById(token, model.Id);
             if (retorno)
                 return RedirectToAction(nameof(ProdutoIndex));
 

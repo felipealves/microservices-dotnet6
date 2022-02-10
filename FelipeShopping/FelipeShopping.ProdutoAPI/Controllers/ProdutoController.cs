@@ -19,7 +19,6 @@ namespace FelipeShopping.ProdutoAPI.Controllers
         }
 
         [HttpGet]
-        [Authorize]
         public async Task<ActionResult<IEnumerable<ProdutoVO>>> FindAll()
         {
             var produto = await _repository.FindAll();

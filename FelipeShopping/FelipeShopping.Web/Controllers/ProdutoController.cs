@@ -19,8 +19,7 @@ namespace FelipeShopping.Web.Controllers
         [Authorize]
         public async Task<IActionResult> ProdutoIndex()
         {
-            var token = await HttpContext.GetTokenAsync("access_token");
-            var produtos = await _produtoService.FindAllProdutos(token);
+            var produtos = await _produtoService.FindAllProdutos("");
             return View(produtos);
         }
 

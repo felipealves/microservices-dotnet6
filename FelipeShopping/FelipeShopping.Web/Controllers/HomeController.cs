@@ -1,4 +1,5 @@
 ﻿using FelipeShopping.Web.Models;
+using FelipeShopping.Web.Services.IServices;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -9,15 +10,26 @@ namespace FelipeShopping.Web.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IProdutoService _produtoService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IProdutoService produtoService)
         {
             _logger = logger;
+            _produtoService = produtoService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var produtos = await _produtoService.FindAllProdutos("");
+            return View(produtos);
+        }
+
+        [Authorize]
+        public async Task<IActionResult> Detalhes(int id)
+        {
+            var token = await HttpContext.GetTokenAsync("access_token");
+            var produto = await _produtoService.FindProdutoById(token, id);
+            return View(produto);
         }
 
         public IActionResult Privacy()

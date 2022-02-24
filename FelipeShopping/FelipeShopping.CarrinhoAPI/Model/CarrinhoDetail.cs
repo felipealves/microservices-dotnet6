@@ -9,13 +9,13 @@ namespace FelipeShopping.CarrinhoAPI.Model
         public long CarrinhoHeaderId { get; set; }
 
         [ForeignKey("CarrinhoHeaderId")]
-        public CarrinhoHeader CarrinhoHeader { get; set; }
+        public virtual CarrinhoHeader CarrinhoHeader { get; set; }
 
 
         public long ProdutoId { get; set; }
 
         [ForeignKey("ProdutoId")]
-        public Produto Produto { get; set; }
+        public virtual Produto Produto { get; set; }
 
 
 

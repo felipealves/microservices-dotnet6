@@ -1,6 +1,7 @@
 using AutoMapper;
 using FelipeShopping.CarrinhoAPI.Config;
 using FelipeShopping.CarrinhoAPI.Model.Context;
+using FelipeShopping.CarrinhoAPI.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
@@ -15,7 +16,7 @@ IMapper mapper = MappingConfig.RegisterMaps().CreateMapper();
 builder.Services.AddSingleton(mapper);
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-//builder.Services.AddScoped<IProdutoRepository, ProdutoRepository>();
+builder.Services.AddScoped<ICarrinhoRepository, CarrinhoRepository>();
 
 builder.Services.AddControllers();
 

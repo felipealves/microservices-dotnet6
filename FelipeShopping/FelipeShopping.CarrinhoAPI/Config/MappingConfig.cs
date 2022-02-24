@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using FelipeShopping.CarrinhoAPI.Config.ValueOjects;
+using FelipeShopping.CarrinhoAPI.Model;
 
 namespace FelipeShopping.CarrinhoAPI.Config
 {
@@ -8,8 +10,10 @@ namespace FelipeShopping.CarrinhoAPI.Config
         {
             var mappingConfig = new MapperConfiguration(config =>
             {
-                //config.CreateMap<ProdutoVO, Produto>();
-                //config.CreateMap<Produto, ProdutoVO>();
+                config.CreateMap<ProdutoVO, Produto>().ReverseMap();
+                config.CreateMap<CarrinhoHeaderVO, CarrinhoHeader>().ReverseMap();
+                config.CreateMap<CarrinhoDetailVO, CarrinhoDetail>().ReverseMap();
+                config.CreateMap<CarrinhoVO, Carrinho>().ReverseMap();
             });
             return mappingConfig;
         }

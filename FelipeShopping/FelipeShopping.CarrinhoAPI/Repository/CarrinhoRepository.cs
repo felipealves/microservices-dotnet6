@@ -56,7 +56,7 @@ namespace FelipeShopping.CarrinhoAPI.Repository
                 //Valida se existe o Detail
                 if (carrinhoDetail == null)
                 {
-                    carrinhoDetailFirst.CarrinhoHeaderId = carrinho.CarrinhoHeader.Id;
+                    carrinhoDetailFirst.CarrinhoHeaderId = carrinhoHeader.Id;
                     carrinhoDetailFirst.Produto = null;
 
                     _context.CarrinhoDetails.Add(carrinhoDetailFirst);

@@ -25,7 +25,7 @@ namespace FelipeShopping.CarrinhoAPI.Controllers
             return Ok(carrinho);
         }
 
-        [HttpPost("adicionar-carrinho/{id}")]
+        [HttpPost("adicionar-carrinho")]
         public async Task<ActionResult<CarrinhoVO>> AddCart(CarrinhoVO carrinhoVo)
         {
             var carrinho = await _repository.SaveOrUpdateCart(carrinhoVo);
@@ -35,7 +35,7 @@ namespace FelipeShopping.CarrinhoAPI.Controllers
             return Ok(carrinho);
         }
 
-        [HttpPut("atualizar-carrinho/{id}")]
+        [HttpPut("atualizar-carrinho")]
         public async Task<ActionResult<CarrinhoVO>> UpdateCart(CarrinhoVO carrinhoVo)
         {
             var carrinho = await _repository.SaveOrUpdateCart(carrinhoVo);

@@ -31,7 +31,7 @@ namespace FelipeShopping.Web.Controllers
 
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> ProdutoCriar(ProdutoModel model)
+        public async Task<IActionResult> ProdutoCriar(ProdutoViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -57,7 +57,7 @@ namespace FelipeShopping.Web.Controllers
 
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> ProdutoEditar(ProdutoModel model)
+        public async Task<IActionResult> ProdutoEditar(ProdutoViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -84,7 +84,7 @@ namespace FelipeShopping.Web.Controllers
         
         [HttpPost]
         [Authorize(Roles = Role.Admin)]
-        public async Task<IActionResult> ProdutoDeletar(ProdutoModel model)
+        public async Task<IActionResult> ProdutoDeletar(ProdutoViewModel model)
         {
             var token = await HttpContext.GetTokenAsync("access_token");
             var retorno = await _produtoService.DeleteProdutoById(token, model.Id);

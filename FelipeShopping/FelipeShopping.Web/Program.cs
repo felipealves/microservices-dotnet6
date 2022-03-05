@@ -29,6 +29,7 @@ builder.Services.AddAuthentication(options=>
     });
 
 builder.Services.AddHttpClient<IProdutoService, ProdutoService>(c => c.BaseAddress = new Uri(builder.Configuration["ServiceUrls:ProdutoAPI"]));
+builder.Services.AddHttpClient<ICarrinhoService, CarrinhoService>(c => c.BaseAddress = new Uri(builder.Configuration["ServiceUrls:CarrinhoAPI"]));
 
 var app = builder.Build();
 

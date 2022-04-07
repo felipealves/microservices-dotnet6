@@ -7,6 +7,6 @@
 
         public string CodigoCupom { get; set; }
 
-        public double ValorCompra { get; set; }
+        public decimal ValorCompra { get; set; }
     }
 }
